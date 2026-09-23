@@ -120,7 +120,7 @@ export default function Portfolio() {
               animate={{ opacity: 1, y: 0, scaleY: 1 }}
               exit={{ opacity: 0, y: -20, scaleY: 0.96 }}
               transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-              style={{ transformOrigin: "top center" }}
+              style={{ originX: 0.5, originY: 0 }}
             >
               <div className="mobile-menu-header-bar">
                 <div className="status-badge">
@@ -203,7 +203,7 @@ export default function Portfolio() {
         <div className="container" id="dev">
           <motion.div 
             className="liquid-glass-card"
-            style={{ padding: "36px 40px" }}
+            style={{ padding: "36px 40px" } as React.CSSProperties}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -330,8 +330,8 @@ export default function Portfolio() {
               const radiusY = 40;
               return (
                 <motion.div key={s} className="skill-node"
-                  style={{ left: `${50 + Math.cos(angle) * radiusX}%`, top: `${50 + Math.sin(angle) * radiusY}%` }}
-                  whileHover={{ scale: 1.12, borderColor: "rgba(142,231,255,.6)" }}>
+                  style={{ left: `${50 + Math.cos(angle) * radiusX}%`, top: `${50 + Math.sin(angle) * radiusY}%` } as React.CSSProperties}
+                  whileHover={{ scale: 1.12, borderColor: "rgba(142,231,255,.6)" } as any}>
                   {s}
                 </motion.div>
               );
