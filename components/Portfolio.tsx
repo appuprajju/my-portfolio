@@ -328,9 +328,11 @@ export default function Portfolio() {
               const angle = (i / skills.length) * Math.PI * 2;
               const radiusX = 37;
               const radiusY = 40;
+              const leftPos = (50 + Math.cos(angle) * radiusX).toFixed(3);
+              const topPos = (50 + Math.sin(angle) * radiusY).toFixed(3);
               return (
                 <motion.div key={s} className="skill-node"
-                  style={{ left: `${50 + Math.cos(angle) * radiusX}%`, top: `${50 + Math.sin(angle) * radiusY}%` } as React.CSSProperties}
+                  style={{ left: `${leftPos}%`, top: `${topPos}%` } as React.CSSProperties}
                   whileHover={{ scale: 1.12, borderColor: "rgba(142,231,255,.6)" } as any}>
                   {s}
                 </motion.div>

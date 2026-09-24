@@ -233,6 +233,8 @@ p { line-height: 1.7; color: var(--muted); }
 }
 
 .hero {
+   background-image: linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
+                    linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
   min-height: 100vh; display:grid; place-items:center; position:relative; overflow:hidden;
   padding-top:76px;
 }

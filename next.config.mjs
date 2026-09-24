@@ -7,18 +7,17 @@ const nextConfig = {
   images: {
     unoptimized: true,
   },
+  transpilePackages: ['three', '@react-three/fiber', '@react-three/drei'],
   reactStrictMode: true,
-  experimental: {
-    allowedDevOrigins: [
-      "localhost:3000",
-      "127.0.0.1:3000",
-      "192.168.*",
-      "10.0.*",
-      "172.16.*",
-      "*.local",
-      "*"
-    ],
-  },
+  allowedDevOrigins: [
+    "localhost:3000",
+    "127.0.0.1:3000",
+    "192.168.*",
+    "10.0.*",
+    "172.16.*",
+    "*.local",
+    "*"
+  ],
 };
 
 export default nextConfig;
