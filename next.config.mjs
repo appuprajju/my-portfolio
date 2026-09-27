@@ -3,7 +3,7 @@ const isProd = process.env.NODE_ENV === 'production';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   output: 'export',
-  basePath: isProd ? '/my-portfolio' : '',
+  basePath: isProd ? '/freelance-3d-portfolio' : '',
   images: {
     unoptimized: true,
   },
