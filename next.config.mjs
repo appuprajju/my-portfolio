@@ -1,9 +1,13 @@
 const isProd = process.env.NODE_ENV === 'production';
 
 /** @type {import('next').NextConfig} */
+
+
+const repoName = 'my-portfolio'
 const nextConfig = {
   output: 'export',
-  basePath: isProd ? '/freelance-3d-portfolio' : '',
+  basePath: isProd ? '/${my-portfolio}' : '',
+  assetPrefix: isProd ? '/${my-portfolio}' : '',
   images: {
     unoptimized: true,
   },
