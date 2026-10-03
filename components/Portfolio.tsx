@@ -86,7 +86,7 @@ export default function Portfolio() {
           <a className="logo" href="#home" onClick={() => setMobileMenuOpen(false)}>
             YOUR<span>.</span>STUDIO
           </a>
-          
+
           <div className="nav-links">
             <a href="/dev" className="liquid-pill" style={{ fontSize: 12, padding: "4px 12px", color: "#8ee7ff", borderColor: "rgba(142,231,255,0.4)" }}>
               ✦ Developer Intro
@@ -99,8 +99,8 @@ export default function Portfolio() {
 
           <div className="nav-actions">
             <a className="nav-cta" href="#contact">Start a project</a>
-            
-            <button 
+
+            <button
               className={`code-menu-btn ${mobileMenuOpen ? "active" : ""}`}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
               aria-label="Toggle Navigation Code Menu"
@@ -114,7 +114,7 @@ export default function Portfolio() {
 
         <AnimatePresence>
           {mobileMenuOpen && (
-            <motion.div 
+            <motion.div
               className="mobile-menu-overlay"
               initial={{ opacity: 0, y: -20, scaleY: 0.96 }}
               animate={{ opacity: 1, y: 0, scaleY: 1 }}
@@ -158,14 +158,14 @@ export default function Portfolio() {
                   </motion.a>
                 ))}
 
-                <motion.div 
+                <motion.div
                   className="mobile-menu-footer"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 0.25, delay: 0.25 }}
                 >
-                  <a 
-                    className="btn-liquid-glass btn-liquid-primary" 
+                  <a
+                    className="btn-liquid-glass btn-liquid-primary"
                     href="#contact"
                     onClick={() => setMobileMenuOpen(false)}
                     style={{ width: "100%", justifyContent: "center" }}
@@ -201,7 +201,7 @@ export default function Portfolio() {
       {/* Developer Profile Spotlight Card */}
       <section className="section" style={{ padding: "40px 0" }}>
         <div className="container" id="dev">
-          <motion.div 
+          <motion.div
             className="liquid-glass-card"
             style={{ padding: "36px 40px" } as React.CSSProperties}
             initial={{ opacity: 0, y: 30 }}
@@ -211,18 +211,18 @@ export default function Portfolio() {
           >
             <div className="dev-preview-grid" style={{ display: "flex", alignItems: "center", gap: 28, flexWrap: "wrap" }}>
               <div style={{ flexShrink: 0 }}>
-                <img 
-                  src="/images/prajwal-portrait.jpg" 
-                  alt="Prajwal M" 
-                  style={{ 
-                    width: 96, 
-                    height: 96, 
-                    borderRadius: "20px", 
-                    objectFit: "cover", 
+                <img
+                  src="/images/prajwal-portrait.jpg"
+                  alt="Prajwal M"
+                  style={{
+                    width: 96,
+                    height: 96,
+                    borderRadius: "20px",
+                    objectFit: "cover",
                     border: "2px solid rgba(142, 231, 255, 0.4)",
                     boxShadow: "0 0 25px rgba(142, 231, 255, 0.25)",
                     display: "block"
-                  }} 
+                  }}
                 />
               </div>
               <div className="dev-preview-left" style={{ flex: "1 1 300px" }}>
@@ -291,23 +291,23 @@ export default function Portfolio() {
                     <p>{p.text}</p>
                     <div className="tags" style={{ position: "static", marginTop: 24 }}>{p.tags.map(t => <span className="tag" key={t}>{t}</span>)}</div>
                   </div>
-                  <a href={p.link || "#"} target={p.link && p.link !== "#" ? "_blank" : undefined} rel={p.link && p.link !== "#" ? "noopener noreferrer" : undefined} className="btn" style={{width: "fit-content", marginTop:25}}>View Project ↗</a>
+                  <a href={p.link || "#"} target={p.link && p.link !== "#" ? "_blank" : undefined} rel={p.link && p.link !== "#" ? "noopener noreferrer" : undefined} className="btn" style={{ width: "fit-content", marginTop: 25 }}>View Project ↗</a>
                   <a className="btn" href="#contact" style={{ width: "fit-content", marginTop: 28 }}>Discuss a similar project →</a>
                 </div>
                 <div className="project-visual">
                   <div className="browser">
-                    <div className="browser-top"><span className="dot"/><span className="dot"/><span className="dot"/></div>
+                    <div className="browser-top"><span className="dot" /><span className="dot" /><span className="dot" /></div>
                     <div className="browser-body" style={{ padding: 0, height: 260, overflow: "hidden", position: "relative" }}>
-                      <img 
-                        src={p.image} 
-                        alt={p.title} 
-                        style={{ 
-                          width: "100%", 
-                          height: "100%", 
-                          objectFit: "cover", 
+                      <img
+                        src={p.image}
+                        alt={p.title}
+                        style={{
+                          width: "100%",
+                          height: "100%",
+                          objectFit: "cover",
                           objectPosition: "top left",
                           display: "block"
-                        }} 
+                        }}
                       />
                     </div>
                   </div>
@@ -352,7 +352,7 @@ export default function Portfolio() {
               ["02", "Design", "Shape the experience, architecture and technical direction."],
               ["03", "Build", "Develop, integrate, test and refine the product."],
               ["04", "Launch", "Deploy, monitor and keep improving after release."]
-            ].map(([n,t,d]) => <div className="step" key={n}><div className="step-num">{n}</div><h3>{t}</h3><p>{d}</p></div>)}
+            ].map(([n, t, d]) => <div className="step" key={n}><div className="step-num">{n}</div><h3>{t}</h3><p>{d}</p></div>)}
           </div>
         </div>
       </section>

@@ -6,8 +6,8 @@ const isProd = process.env.NODE_ENV === 'production';
 const repoName = 'my-portfolio'
 const nextConfig = {
   output: 'export',
-  basePath: isProd ? '/${my-portfolio}' : '',
-  assetPrefix: isProd ? '/${my-portfolio}' : '',
+  basePath: isProd ? `/${repoName}` : '',
+  assetPrefix: isProd ? `/${repoName}` : '',
   images: {
     unoptimized: true,
   },
