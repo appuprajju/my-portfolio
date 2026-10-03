@@ -5,6 +5,8 @@ import { motion, AnimatePresence } from "framer-motion";
 import dynamic from "next/dynamic";
 import Link from "next/link";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
+
 const Scene = dynamic(() => import("./Scene"), { ssr: false });
 
 export default function Dev() {
@@ -29,7 +31,7 @@ export default function Dev() {
         <div className="dev-container dev-header-inner">
           <Link href="/" className="dev-brand">
             <img 
-              src="/images/prajwal-portrait.jpg" 
+              src={`${basePath}/images/prajwal-portrait.jpg`} 
               alt="Prajwal M" 
               className="dev-avatar-badge" 
               style={{ objectFit: "cover", padding: 0 }} 
@@ -144,7 +146,7 @@ export default function Dev() {
                   </div>
                   <div style={{ display: "flex", alignItems: "center", gap: 10, margin: "4px 0" }}>
                     <img 
-                      src="/images/prajwal-portrait.jpg" 
+                      src={`${basePath}/images/prajwal-portrait.jpg`} 
                       alt="Prajwal M" 
                       style={{ width: 32, height: 32, borderRadius: "50%", objectFit: "cover", border: "1px solid rgba(142, 231, 255, 0.4)", flexShrink: 0 }} 
                     />

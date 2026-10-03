@@ -1,9 +1,12 @@
 "use client";
 
+import Link from "next/link";
 import dynamic from "next/dynamic";
 import { motion, AnimatePresence } from "framer-motion";
 import { FormEvent, useState } from "react";
 import Dropdown from "./Dropdown";
+
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || "";
 
 const Scene = dynamic(() => import("./Scene"), { ssr: false });
 
@@ -88,9 +91,9 @@ export default function Portfolio() {
           </a>
 
           <div className="nav-links">
-            <a href="/dev" className="liquid-pill" style={{ fontSize: 12, padding: "4px 12px", color: "#8ee7ff", borderColor: "rgba(142,231,255,0.4)" }}>
+            <Link href="/dev" className="liquid-pill" style={{ fontSize: 12, padding: "4px 12px", color: "#8ee7ff", borderColor: "rgba(142,231,255,0.4)" }}>
               ✦ Developer Intro
-            </a>
+            </Link>
             <a href="#services">Services</a>
             <a href="#work">Work</a>
             <a href="#skills">Skills</a>
@@ -139,24 +142,41 @@ export default function Portfolio() {
                   { href: "#work", num: "02", label: "Selected Engineering Work", isDev: false },
                   { href: "#skills", num: "03", label: "Skills & Tech Stack", isDev: false },
                   { href: "#contact", num: "04", label: "Start a Project / Contact", isDev: false },
-                ].map((item, index) => (
-                  <motion.a
-                    key={item.href}
-                    href={item.href}
-                    className={`mobile-menu-link ${item.isDev ? "dev-link" : ""}`}
-                    onClick={() => setMobileMenuOpen(false)}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    exit={{ opacity: 0, x: -10 }}
-                    transition={{ duration: 0.25, delay: index * 0.04 }}
-                  >
-                    <div className="menu-item-left">
-                      <span className="menu-num">{item.num}</span>
-                      <span className="menu-title">{item.label}</span>
-                    </div>
-                    <span className="menu-arrow">{item.icon || "→"}</span>
-                  </motion.a>
-                ))}
+                ].map((item, index) => {
+                  const isRoute = item.href.startsWith("/");
+                  const content = (
+                    <>
+                      <div className="menu-item-left">
+                        <span className="menu-num">{item.num}</span>
+                        <span className="menu-title">{item.label}</span>
+                      </div>
+                      <span className="menu-arrow">{item.icon || "→"}</span>
+                    </>
+                  );
+                  return isRoute ? (
+                    <Link
+                      key={item.href}
+                      href={item.href}
+                      className={`mobile-menu-link ${item.isDev ? "dev-link" : ""}`}
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      {content}
+                    </Link>
+                  ) : (
+                    <motion.a
+                      key={item.href}
+                      href={item.href}
+                      className={`mobile-menu-link ${item.isDev ? "dev-link" : ""}`}
+                      onClick={() => setMobileMenuOpen(false)}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      exit={{ opacity: 0, x: -10 }}
+                      transition={{ duration: 0.25, delay: index * 0.04 }}
+                    >
+                      {content}
+                    </motion.a>
+                  );
+                })}
 
                 <motion.div
                   className="mobile-menu-footer"
@@ -192,7 +212,7 @@ export default function Portfolio() {
             cybersecurity and mobile apps — combining engineering with a product-first mindset.
           </p>
           <div className="hero-actions">
-            <a className="btn btn-primary" href="/dev">Meet the Developer ↗</a>
+            <Link className="btn btn-primary" href="/dev">Meet the Developer ↗</Link>
             <a className="btn" href="#work">Explore my work</a>
           </div>
         </motion.div>
@@ -212,7 +232,7 @@ export default function Portfolio() {
             <div className="dev-preview-grid" style={{ display: "flex", alignItems: "center", gap: 28, flexWrap: "wrap" }}>
               <div style={{ flexShrink: 0 }}>
                 <img
-                  src="/images/prajwal-portrait.jpg"
+                  src={`${basePath}/images/prajwal-portrait.jpg`}
                   alt="Prajwal M"
                   style={{
                     width: 96,
@@ -247,9 +267,9 @@ export default function Portfolio() {
               </div>
 
               <div className="dev-preview-right">
-                <a href="/dev" className="btn-liquid-glass btn-liquid-primary" style={{ whiteSpace: "nowrap" }}>
+                <Link href="/dev" className="btn-liquid-glass btn-liquid-primary" style={{ whiteSpace: "nowrap" }}>
                   <span>Open Developer Dossier ↗</span>
-                </a>
+                </Link>
               </div>
             </div>
           </motion.div>
@@ -299,7 +319,7 @@ export default function Portfolio() {
                     <div className="browser-top"><span className="dot" /><span className="dot" /><span className="dot" /></div>
                     <div className="browser-body" style={{ padding: 0, height: 260, overflow: "hidden", position: "relative" }}>
                       <img
-                        src={p.image}
+                        src={`${basePath}${p.image}`}
                         alt={p.title}
                         style={{
                           width: "100%",
