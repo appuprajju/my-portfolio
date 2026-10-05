@@ -50,8 +50,10 @@ export default function Portfolio() {
     setLoading(true);
     setError("");
 
+    const form = e.currentTarget;
+
     try {
-      const formData = new FormData(e.currentTarget);
+      const formData = new FormData(form);
       const data = {
         name: formData.get("name"),
         email: formData.get("email"),
@@ -68,7 +70,7 @@ export default function Portfolio() {
 
       if (response.ok) {
         setSent(true);
-        e.currentTarget.reset();
+        form.reset();
         setTimeout(() => setSent(false), 5000); // Hide message after 5 seconds
       } else {
         const errorData = await response.json();
