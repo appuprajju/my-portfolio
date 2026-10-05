@@ -1,16 +1,18 @@
 const isProd = process.env.NODE_ENV === 'production';
+const isGithubPages = process.env.GITHUB_PAGES === 'true';
 
 /** @type {import('next').NextConfig} */
 
-
-const repoName = 'my-portfolio'
+const repoName = 'my-portfolio';
 const nextConfig = {
-  output: 'export',
+  ...(isGithubPages ? {
+    output: 'export',
+    basePath: `/${repoName}`,
+    assetPrefix: `/${repoName}`,
+  } : {}),
   trailingSlash: true,
-  basePath: isProd ? `/${repoName}` : '',
-  assetPrefix: isProd ? `/${repoName}` : '',
   env: {
-    NEXT_PUBLIC_BASE_PATH: isProd ? `/${repoName}` : '',
+    NEXT_PUBLIC_BASE_PATH: (isProd && isGithubPages) ? `/${repoName}` : '',
   },
   images: {
     unoptimized: true,

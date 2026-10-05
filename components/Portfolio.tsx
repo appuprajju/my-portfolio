@@ -55,26 +55,52 @@ export default function Portfolio() {
     try {
       const formData = new FormData(form);
       const data = {
-        name: formData.get("name"),
-        email: formData.get("email"),
-        type: formData.get("type"),
-        budget: formData.get("budget"),
-        message: formData.get("message"),
+        name: formData.get("name") as string,
+        email: formData.get("email") as string,
+        type: formData.get("type") as string,
+        budget: formData.get("budget") as string,
+        message: formData.get("message") as string,
       };
 
-      const response = await fetch("/api/send-email", {
+      const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
+      const endpoint = apiUrl ? `${apiUrl.replace(/\/$/, '')}/api/send-email` : "/api/send-email";
+
+      let response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
-      });
+      }).catch(() => null);
 
-      if (response.ok) {
+      // Fallback for GitHub Pages static export if /api/send-email returns 404/405 or fails to fetch
+      if (!response || !response.ok) {
+        const web3Key = process.env.NEXT_PUBLIC_WEB3FORMS_KEY;
+        if (web3Key) {
+          const web3Response = await fetch("https://api.web3forms.com/submit", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              access_key: web3Key,
+              name: data.name,
+              email: data.email,
+              subject: `New Portfolio Inquiry from ${data.name}`,
+              from_name: "Portfolio Contact Form",
+              replyto: data.email,
+              message: `Project Type: ${data.type}\nBudget: ${data.budget || "Not specified"}\n\nMessage:\n${data.message}`,
+            }),
+          });
+          if (web3Response.ok) {
+            response = web3Response;
+          }
+        }
+      }
+
+      if (response && response.ok) {
         setSent(true);
         form.reset();
         setTimeout(() => setSent(false), 5000); // Hide message after 5 seconds
       } else {
-        const errorData = await response.json();
-        setError(errorData.error || "Failed to send email. Please try again.");
+        const errorData = response ? await response.json().catch(() => ({})) : {};
+        setError(errorData.error || errorData.message || "Failed to send email. Please try again or check setup.");
       }
     } catch (err) {
       setError("An error occurred. Please try again.");

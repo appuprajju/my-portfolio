@@ -1,6 +1,19 @@
 import { Resend } from 'resend';
 import { NextRequest, NextResponse } from 'next/server';
 
+const corsHeaders = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Methods': 'POST, OPTIONS',
+  'Access-Control-Allow-Headers': 'Content-Type',
+};
+
+export async function OPTIONS() {
+  return new NextResponse(null, {
+    status: 200,
+    headers: corsHeaders,
+  });
+}
+
 export async function POST(request: NextRequest) {
   try {
     const apiKey = process.env.RESEND_API_KEY;
@@ -9,7 +22,7 @@ export async function POST(request: NextRequest) {
     if (!apiKey || apiKey.includes('placeholder') || apiKey.trim() === '') {
       return NextResponse.json(
         { error: 'Email service is unconfigured or temporarily disabled.' },
-        { status: 503 }
+        { status: 503, headers: corsHeaders }
       );
     }
 
@@ -19,7 +32,7 @@ export async function POST(request: NextRequest) {
     if (!name || !email || !type || !message) {
       return NextResponse.json(
         { error: 'Missing required form fields.' },
-        { status: 400 }
+        { status: 400, headers: corsHeaders }
       );
     }
 
@@ -111,19 +124,19 @@ export async function POST(request: NextRequest) {
     if (ownerResult.error) {
       return NextResponse.json(
         { error: ownerResult.error.message || 'Failed to send notification email.' },
-        { status: 500 }
+        { status: 500, headers: corsHeaders }
       );
     }
 
     return NextResponse.json(
       { success: true, message: 'Inquiry submitted successfully and confirmation sent!' },
-      { status: 200 }
+      { status: 200, headers: corsHeaders }
     );
   } catch (error: any) {
     console.error('Error in send-email API:', error);
     return NextResponse.json(
       { error: error?.message || 'Internal server error' },
-      { status: 500 }
+      { status: 500, headers: corsHeaders }
     );
   }
 }
