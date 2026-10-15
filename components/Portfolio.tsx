@@ -65,7 +65,7 @@ export default function Portfolio() {
       const apiUrl = process.env.NEXT_PUBLIC_API_URL || "";
       const endpoint = apiUrl ? `${apiUrl.replace(/\/$/, '')}/api/send-email` : "/api/send-email";
 
-      let response = await fetch(endpoint, {
+      let response = await fetch("https://api.makeuperfect.in", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
