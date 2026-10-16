@@ -7,12 +7,12 @@ const repoName = 'my-portfolio';
 const nextConfig = {
   ...(isGithubPages ? {
     output: 'export',
-    basePath: `/${repoName}`,
-    assetPrefix: `/${repoName}`,
+    basePath: `/my-portfolio`,
+    assetPrefix: `/my-portfolio`,
   } : {}),
   trailingSlash: true,
   env: {
-    NEXT_PUBLIC_BASE_PATH: (isProd && isGithubPages) ? `/${repoName}` : '',
+    NEXT_PUBLIC_BASE_PATH: (isProd && isGithubPages) ? `/my-portfolio` : '',
   },
   images: {
     unoptimized: true,
