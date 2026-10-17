@@ -31,7 +31,7 @@ export default function Dev() {
         <div className="dev-container dev-header-inner">
           <Link href="/" className="dev-brand">
             <img 
-              src={`${basePath}/images/prajwal-portrait.jpg`} 
+              src={`/images/prajwal-portrait.jpg`} 
               alt="Prajwal M" 
               className="dev-avatar-badge" 
               style={{ objectFit: "cover", padding: 0 }} 
@@ -146,7 +146,7 @@ export default function Dev() {
                   </div>
                   <div style={{ display: "flex", alignItems: "center", gap: 10, margin: "4px 0" }}>
                     <img 
-                      src={`${basePath}/images/prajwal-portrait.jpg`} 
+                      src={`/images/prajwal-portrait.jpg`} 
                       alt="Prajwal M" 
                       style={{ width: 32, height: 32, borderRadius: "50%", objectFit: "cover", border: "1px solid rgba(142, 231, 255, 0.4)", flexShrink: 0 }} 
                     />

@@ -260,7 +260,7 @@ export default function Portfolio() {
             <div className="dev-preview-grid" style={{ display: "flex", alignItems: "center", gap: 28, flexWrap: "wrap" }}>
               <div style={{ flexShrink: 0 }}>
                 <img
-                  src={`${basePath}/images/prajwal-portrait.jpg`}
+                  src={`/images/prajwal-portrait.jpg`}
                   alt="Prajwal M"
                   style={{
                     width: 96,
@@ -347,7 +347,7 @@ export default function Portfolio() {
                     <div className="browser-top"><span className="dot" /><span className="dot" /><span className="dot" /></div>
                     <div className="browser-body" style={{ padding: 0, height: 260, overflow: "hidden", position: "relative" }}>
                       <img
-                        src={`${basePath}${p.image}`}
+                        src={`${p.image}`}
                         alt={p.title}
                         style={{
                           width: "100%",
