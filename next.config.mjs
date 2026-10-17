@@ -9,13 +9,6 @@ const basePath = isGithubPages ? `/${repoName}` : '';
 const nextConfig = {
   output: 'export',
 
-  ...(isGithubPages
-    ? {
-        basePath,
-        assetPrefix: basePath,
-      }
-    : {}),
-
   trailingSlash: true,
 
   env: {
